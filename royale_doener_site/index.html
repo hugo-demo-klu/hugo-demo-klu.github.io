@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Royale Döner - Der beste Döner in Klagenfurt. Frische Zutaten, schneller Service, echte Qualität.">
+    <title>[DEMO] Royale Döner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5A00;
+            --primary-hover: #E04A00;
+            --text-dark: #1A1A1A;
+            --text-light: #F4F4F4;
+            --bg-light: #FAFAFA;
+            --bg-dark: #222222;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav.scrolled {
+            padding: 10px 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 90, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        /* Hero */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 105vh;
+            height: 105vw;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://lh3.googleusercontent.com/gps-cs-s/AHVAweqntXSmsFLPBg8vOVYwZpDAmbvlq7jsV8jeAlFc96ubei5Blbh-IIXbcGnA4zDiptahx0sYV0IRXi7s7W_mHSnGI-Aj49bv2zokikN55tGRzJXpTY7vdLG1BUUnOVxhaPMQSklc=s680-w680-h510');
+            background-size: cover;
+            background-position: center;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* About */
+        #about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-content h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .about-content p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .about-features {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        /* Menu */
+        #menu {
+            background: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            background: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .item-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Reviews */
+        #reviews {
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .overall-rating {
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .phone-link {
+            display: inline-block;
+            color: #d84315;
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 8px 16px;
+            background: rgba(216, 67, 21, 0.08);
+            border-radius: 8px;
+            transition: var(--transition);
+            margin-top: 5px;
+        }
+
+        .phone-link:hover {
+            color: white;
+            background: var(--primary);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 90, 0, 0.3);
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Location & Contact */
+        #contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-block h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .info-block p,
+        .info-block a {
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 90, 0, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-error {
+            color: #d32f2f;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 4rem 5% 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                flex-direction: column;
+                padding: 2rem 5%;
+                gap: 1.5rem;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+                z-index: -1;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                z-index: 999;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+
+            #hero {
+                padding-top: 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                padding: 0 2rem;
+            }
+
+            #about,
+            #contact {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Royale Döner</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">Über Uns</a></li>
+            <li><a href="#menu">Speisekarte</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Der beste Döner in Klagenfurt</h1>
+            <p>Frische Zutaten, schneller Service, echte Qualität</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Jetzt bestellen</a>
+                <a href="#menu" class="btn btn-outline">Speisekarte ansehen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Über Uns Section -->
+    <section id="about" class="fade-in-section">
+        <!-- Using "Bild 2" conceptual placeholder -->
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqwb7BITCFsGvlMNCSpip0Fw7fafeApVF_p_JR-8bOHxSd1-AtFmYY8Z_f2Bfo7w7FVucOU2B91kYaKw5F8T4YArMm2q1xzt7XML1d2jfNX66bCALJWpOBEnkSqP9cPAnkOGpMm=s680-w680-h510"
+            alt="Royale Döner Zubereitung" class="about-img">
+        <div class="about-content">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Die Royale Qualität</h2>
+            <p>Willkommen bei Royale Döner! Wir stehen für echten Geschmack und höchste Qualität in Klagenfurt. Unser
+                Fleisch wird täglich frisch vorbereitet, und wir verwenden nur die besten, regionalen Zutaten für unsere
+                Salate und Saucen.</p>
+            <p>Egal ob du den schnellen Hunger in der Mittagspause stillen willst, oder abends gemütlich ein Essen holst
+                – wir bieten exzellenten Service für alle.</p>
+            <div class="about-features">
+                <div class="feature">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                    Zum Mitnehmen
+                </div>
+                <div class="feature">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                    Schnelle Lieferung
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speisekarte Section -->
+    <section id="menu" class="fade-in-section">
+        <h2 class="section-title">Unsere Speisekarte</h2>
+
+        <div class="menu-category">
+            <h3 class="category-title">Döner & Dürüm</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Royale Döner (Kalb)</span>
+                        <span class="item-price">6,50 €</span>
+                    </div>
+                    <p class="item-desc">Im knusprigen Fladenbrot mit frischem Salat, Tomate, Zwiebeln und Haussauce.
+                    </p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Hänchen Döner</span>
+                        <span class="item-price">6,00 €</span>
+                    </div>
+                    <p class="item-desc">Zartes Hühnerfleisch im Fladenbrot mit Salat, Gurke und Knoblauchsauce.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Royale Dürüm</span>
+                        <span class="item-price">7,50 €</span>
+                    </div>
+                    <p class="item-desc">Gerolltes Yufka-Brot, Kalbfleisch, Eisbergsalat, Tomaten, Zwiebeln,
+                        Joghurtsauce.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Veggie Döner (Falafel)</span>
+                        <span class="item-price">5,50 €</span>
+                    </div>
+                    <p class="item-desc">Hausgemachte Falafel im Fladenbrot mit Hummus, Salat und Granatapfelsauce.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h3 class="category-title">Beilagen</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Pommes Frites</span>
+                        <span class="item-price">3,50 €</span>
+                    </div>
+                    <p class="item-desc">Goldgelb und knusprig, inkl. Ketchup oder Mayo.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Chicken Nuggets (6 Stk)</span>
+                        <span class="item-price">4,50 €</span>
+                    </div>
+                    <p class="item-desc">Mit Sweet-Chili-Sauce.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h3 class="category-title">Getränke</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Ayran</span>
+                        <span class="item-price">1,50 €</span>
+                    </div>
+                    <p class="item-desc">Der klassische Joghurt-Drink.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-title">Coca Cola / Fanta / Sprite (0,33l)</span>
+                        <span class="item-price">2,50 €</span>
+                    </div>
+                    <p class="item-desc">Gekühlte Softdrinks in der Dose.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bewertungen Section -->
+    <section id="reviews" class="fade-in-section">
+        <h2 class="section-title">Was unsere Kunden sagen</h2>
+        <div class="overall-rating">
+            <span class="stars">★★★★★</span>
+            <p style="margin-top: 10px; color: #555; font-weight: 600;">4.3 von 5 Sternen auf Google</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="avatar">M</div>
+                    <div>
+                        <strong>Mario Sherif el Shamy</strong>
+                        <div class="stars" style="font-size: 1rem;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"Bester Döner Klagenfurts! Endlich gibts Kalbsdöner in Klagenfurt🤩 Nettes
+                    Personal, leckerer Döner und sauber! Wer nicht war, muss hin!"</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="avatar">N</div>
+                    <div>
+                        <strong>Nino Ackerer</strong>
+                        <div class="stars" style="font-size: 1rem;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"Sehr leckerer Döner Kalbfleisch sehr zu empfehlen Mitarbeiter sehr freundlich
+                    und ambitioniert,alles in allem ,sehr empfehlenswert"</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="avatar">S</div>
+                    <div>
+                        <strong>Simon Mikula</strong>
+                        <div class="stars" style="font-size: 1rem;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"absolute 5/5! Döner super gefüllt und nicht zu fettig da viel verschiedene
+                    Gemüsesorte. Personal sehr nett! :)"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt Section -->
+    <section id="contact" class="fade-in-section">
+        <div class="map-container"
+            style="height: 100%; margin-top: 0; min-height: 400px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <!-- Embedded Google Map targeting Bahnhofstraße 20/3, Klagenfurt -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.1751332463435!2d14.306915176840706!3d46.62315487111818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4770734268e0d5db%3A0xc3cf905bcaa582d9!2sBahnhofstra%C3%9Fe%2020%2C%209020%20Klagenfurt%20am%20W%C3%B6rthersee%2C%20Austria!5e0!3m2!1sen!2sde!4v1700000000000!5m2!1sen!2sde"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="contact-info-wrap"
+            style="background: white; padding: 3rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); justify-content: center;">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 2rem; font-size: 2rem;">Besuche uns</h2>
+
+            <div class="info-block" style="margin-bottom: 2rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem;">Standort</h3>
+                <p style="color: #444; line-height: 1.6;">Bahnhofstraße 20/3<br>9020 Klagenfurt am Wörthersee</p>
+            </div>
+
+            <div class="info-block" style="margin-bottom: 2rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.8rem; font-size: 1.1rem;">Kontakt</h3>
+                <p><a href="tel:06766951382" class="phone-link">0676 695 1382</a></p>
+            </div>
+
+            <div class="info-block">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">Öffnungszeiten</h3>
+                <table style="width: 100%; max-width: 300px; color: #444; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 6px 0;">Mo - Do:</td>
+                        <td style="text-align: right; font-weight: 500;">09:00 – 21:00</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 0;">Fr - Sa:</td>
+                        <td style="text-align: right; font-weight: 500;">09:00 – 02:00</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 0;">Sonntag:</td>
+                        <td style="text-align: right; font-weight: 500;">12:00 – 21:00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo"
+                    style="color: white; font-size: 1.2rem; display: block; margin-bottom: 1rem;">Royale Döner</a>
+                <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">Der beste Döner in Klagenfurt. Frische
+                    Zutaten, echter Geschmack.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li><a href="tel:06766951382">Tel: 0676 695 1382</a></li>
+                    <li>Bahnhofstraße 20/3, 9020 Klagenfurt</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="#">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">AGB</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Royale Döner. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- NAVIGATION & UI LOGIC ---
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links li a');
+
+        // Sticky Navbar Resize on Scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu on click outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Fade In on Scroll Intersection Observer
+        const fadeElements = document.querySelectorAll('.fade-in-section');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+
+    </script>
+</body>
+
+</html>
