@@ -2,45 +2,70 @@
 <html lang="de">
 
 <head>
+    <!-- Website erstellt, designed und programmiert von Hugo Tamas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[DEMO] Stadtcafe Am Altenplatz</title>
     <meta name="description"
-        content="Royale Döner - Der beste Döner in Klagenfurt. Frische Zutaten, schneller Service, echte Qualität.">
-    <title>[DEMO] Royale Döner</title>
+        content="Frischer Kaffee, hausgemachte Mehlspeisen und ein einzigartiges Ambiente direkt am Alten Platz in Klagenfurt am Wörthersee.">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <style>
+        /* CSS Variables for Color Palette */
         :root {
-            --primary: #FF5A00;
-            --primary-hover: #E04A00;
-            --text-dark: #1A1A1A;
-            --text-light: #F4F4F4;
-            --bg-light: #FAFAFA;
-            --bg-dark: #222222;
-            --nav-bg: rgba(255, 255, 255, 0.95);
+            --bg-color: #FDFBF7;
+            /* Creme/Beige */
+            --bg-alt: #F4EFE6;
+            --text-main: #3E2723;
+            /* Warmes Braun */
+            --text-muted: #5D4037;
+            --accent-gold: #D4AF37;
+            /* Gold Akzent */
+            --accent-gold-hover: #C5A017;
+            --accent-green: #1B3B36;
+            /* Dunkles Grün */
+            --white: #FFFFFF;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
+        /* Basic Reset & Typography */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
         h1,
         h2,
         h3,
-        h4 {
-            color: var(--text-dark);
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         a {
@@ -52,32 +77,103 @@
             list-style: none;
         }
 
-        /* Navigation */
-        nav {
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-main);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Header & Navigation */
+        header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: var(--nav-bg);
+            background-color: rgba(253, 251, 247, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 20px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: var(--transition);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        nav.scrolled {
-            padding: 10px 5%;
+            height: 80px;
         }
 
         .logo {
+            font-family: var(--font-heading);
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
+            font-weight: 700;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .nav-links {
@@ -85,351 +181,489 @@
             gap: 2rem;
         }
 
-        .nav-links li a {
+        .nav-links a {
             font-weight: 500;
-            transition: var(--transition);
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links li a:hover {
-            color: var(--primary);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
         }
 
         .hamburger {
             display: none;
             cursor: pointer;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            transition: var(--transition);
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
+            background: none;
             border: none;
-            text-align: center;
+            color: var(--text-main);
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
+        .hamburger svg {
+            width: 30px;
+            height: 30px;
         }
 
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 90, 0, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: var(--text-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 800;
-        }
-
-        /* Hero */
-        #hero {
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 999;
+            padding: 80px 30px 30px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--bg-alt);
+            padding-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
-            color: white;
-            text-align: center;
-            padding-top: 80px;
-            overflow: hidden;
-            background-color: #1a1a1a;
-        }
-
-        #hero::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 105vh;
-            height: 105vw;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://lh3.googleusercontent.com/gps-cs-s/AHVAweqntXSmsFLPBg8vOVYwZpDAmbvlq7jsV8jeAlFc96ubei5Blbh-IIXbcGnA4zDiptahx0sYV0IRXi7s7W_mHSnGI-Aj49bv2zokikN55tGRzJXpTY7vdLG1BUUnOVxhaPMQSklc=s680-w680-h510');
+            background-image: linear-gradient(rgba(27, 59, 54, 0.7), rgba(27, 59, 54, 0.6)), url('https://lh3.googleusercontent.com/gps-cs-s/AHVAwep4FV7bKOy3t-v_xOPQwmNgnU9xFJz8br6ZpUH1K92-MufsPY9pyRFPlD_9iUl4Fwo4K6X7YBQfMAN8rmz_7MVUdMqqYQRY_CVJOmtcliMWKbpeBK2T1CWXW9ID5Cfegk2PhWP5hw=s680-w680-h510');
             background-size: cover;
             background-position: center;
-            transform: translate(-50%, -50%) rotate(-90deg);
-            z-index: 0;
+            background-attachment: fixed;
+            margin-top: 0;
         }
 
         .hero-content {
-            position: relative;
+            text-align: center;
+            color: var(--white);
             max-width: 800px;
-            z-index: 2;
-            animation: fadeIn 1s ease-out;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .hero-content h1 {
-            color: white;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        .hero h1 {
+            font-size: 4rem;
             line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--white);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: var(--text-light);
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
         }
 
-        .hero-buttons {
+        .hero-btns {
             display: flex;
-            gap: 1rem;
+            gap: 20px;
             justify-content: center;
         }
 
-        /* About */
-        #about {
+        .hero .btn-outline {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .hero .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--accent-green);
+        }
+
+        /* Über Uns Section */
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 50px;
             align-items: center;
         }
 
-        .about-img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 16px;
+        .about-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
         }
 
-        .about-img:hover {
-            transform: scale(1.02);
+        .about-image img {
+            transition: transform 0.7s ease;
         }
 
-        .about-content h2 {
-            margin-bottom: 1.5rem;
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-text h2 {
             font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
         }
 
-        .about-content p {
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            color: #555;
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
         }
 
-        .about-features {
+        .features {
             display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .feature {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 10px;
-            font-weight: 600;
         }
 
-        /* Menu */
-        #menu {
-            background: white;
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+        }
+
+        /* Getränke / Menu Section */
+        .menu-section {
+            background-color: var(--bg-alt);
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .menu-category {
-            margin-bottom: 3rem;
+            margin-bottom: 40px;
         }
 
         .category-title {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
+            margin-bottom: 25px;
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
-        .menu-item {
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 1.5rem;
+        .menu-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
             transition: var(--transition);
-            background: var(--bg-light);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            height: 100%;
         }
 
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            border-color: var(--primary);
+        .menu-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
         }
 
-        .item-header {
+        .menu-card-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.5rem;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
         }
 
-        .item-title {
+        .menu-name {
+            font-family: var(--font-heading);
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 600;
         }
 
-        .item-price {
-            font-weight: 700;
-            color: var(--primary);
+        .menu-price {
+            font-weight: 600;
+            color: var(--accent-gold);
             font-size: 1.1rem;
         }
 
-        .item-desc {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
+        .menu-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1;
         }
 
-        /* Reviews */
-        #reviews {
-            background: var(--bg-light);
+        /* Bewertungen Section */
+        .reviews-summary {
             text-align: center;
-        }
-
-        .overall-rating {
-            margin-bottom: 3rem;
-            font-size: 1.2rem;
+            margin-bottom: 40px;
         }
 
         .stars {
-            color: #FFD700;
+            color: var(--accent-gold);
             font-size: 1.5rem;
             letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .rating-number {
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
         }
 
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .review-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: left;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
             transition: var(--transition);
-            cursor: default;
+            border-top: 4px solid var(--accent-gold);
         }
 
         .review-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .phone-link {
-            display: inline-block;
-            color: #d84315;
-            font-size: 1.3rem;
-            font-weight: 800;
-            padding: 8px 16px;
-            background: rgba(216, 67, 21, 0.08);
-            border-radius: 8px;
-            transition: var(--transition);
-            margin-top: 5px;
-        }
-
-        .phone-link:hover {
-            color: white;
-            background: var(--primary);
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 90, 0, 0.3);
-        }
-
-        .reviewer {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 1rem;
-        }
-
-        .avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #555;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
         }
 
         .review-text {
             font-style: italic;
-            color: #555;
-            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        /* Location & Contact */
-        #contact {
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .author-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .author-stars {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        /* Kontakt Section */
+        .contact-section {
+            background-color: var(--bg-alt);
+        }
+
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 50px;
         }
 
-        .contact-info-wrap {
+        .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 30px;
         }
 
-        .info-block h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
 
-        .info-block p,
-        .info-block a {
-            line-height: 1.6;
-            color: #444;
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-green);
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .map-container {
+        .contact-detail h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--accent-green);
+        }
+
+        .contact-detail p,
+        .contact-detail a {
+            color: var(--text-muted);
+        }
+
+        .contact-detail a:hover {
+            color: var(--accent-gold);
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
             width: 100%;
-            height: 250px;
-            border-radius: 12px;
+            padding: 12px 15px;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background-color: var(--bg-color);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        .form-message.success {
+            display: block;
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #C8E6C9;
+        }
+
+        .form-message.error {
+            display: block;
+            background-color: #FFEBEE;
+            color: #C62828;
+            border: 1px solid #FFCDD2;
+        }
+
+        .error-text {
+            color: #C62828;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Maps embed */
+        .map-container {
+            margin-top: 50px;
+            border-radius: 8px;
             overflow: hidden;
-            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 400px;
         }
 
         .map-container iframe {
@@ -438,108 +672,60 @@
             border: none;
         }
 
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 90, 0, 0.1);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-error {
-            color: #d32f2f;
-            font-size: 0.8rem;
-            margin-top: 5px;
-            display: none;
-        }
-
         /* Footer */
         footer {
-            background: var(--bg-dark);
-            color: var(--text-light);
-            padding: 4rem 5% 1.5rem;
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 60px 0 20px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
         }
 
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
         }
 
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .footer-col ul li a {
-            color: #aaa;
-            transition: var(--transition);
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
         }
 
-        .footer-col ul li a:hover {
-            color: white;
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 1.5rem;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #888;
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
         }
 
         /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
+            visibility: hidden;
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
             will-change: opacity, visibility;
         }
@@ -547,388 +733,676 @@
         .fade-in-section.is-visible {
             opacity: 1;
             transform: none;
+            visibility: visible;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--nav-bg);
-                flex-direction: column;
-                padding: 2rem 5%;
-                gap: 1.5rem;
-                transform: translateY(-150%);
-                opacity: 0;
-                transition: var(--transition);
-                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
-                z-index: -1;
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
 
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                z-index: 999;
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
 
             .hamburger {
-                display: flex;
+                display: block;
             }
 
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 6px);
-            }
-
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -6px);
-            }
-
-            #hero {
-                padding-top: 60px;
-            }
-
-            .hero-content h1 {
+            .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-buttons {
+            .hero-btns {
                 flex-direction: column;
-                padding: 0 2rem;
             }
 
-            #about,
-            #contact {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .contact-info {
+                gap: 20px;
             }
+        }
 
-            .section-title {
-                font-size: 2rem;
-            }
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-color);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: var(--bg-color);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 2001;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <a href="#" class="logo">Royale Döner</a>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/hugo-demo-klu/hugo-demo-klu.github.io/refs/heads/main/logo.png"
+                    alt="Logo" style="height: 40px; width: auto; border-radius: 50%;">
+                Stadtcafe am Altenplatz
+            </a>
+            <nav class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">Über Uns</a>
+                <a href="#menu" id="menu-btn-desktop">Menükarte</a>
+                <a href="#photos">Fotos</a>
+                <a href="#contact">Kontakt</a>
+            </nav>
+            <button class="hamburger" aria-label="Menu öffnen" id="hamburger-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">Über Uns</a></li>
-            <li><a href="#menu">Speisekarte</a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
-    </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="close-menu" id="close-btn" aria-label="Menu schließen">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">Über Uns</a>
+        <a href="#menu" class="mobile-link" id="menu-btn-mobile">Menükarte</a>
+        <a href="#photos" class="mobile-link">Fotos</a>
+        <a href="#contact" class="mobile-link">Kontakt</a>
+    </div>
 
     <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Der beste Döner in Klagenfurt</h1>
-            <p>Frische Zutaten, schneller Service, echte Qualität</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Jetzt bestellen</a>
-                <a href="#menu" class="btn btn-outline">Speisekarte ansehen</a>
+    <section id="home" class="hero">
+        <div class="hero-content fade-in-section">
+            <h1>Genuss & Gemütlichkeit im Herzen von Klagenfurt</h1>
+            <p>Frischer Kaffee, hausgemachte Mehlspeisen und ein einzigartiges Ambiente am Alten Platz</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn btn-primary" id="menu-btn-hero">Menükarte entdecken</a>
+                <a href="#contact" class="btn btn-outline">Kontakt aufnehmen</a>
             </div>
         </div>
     </section>
 
     <!-- Über Uns Section -->
-    <section id="about" class="fade-in-section">
-        <!-- Using "Bild 2" conceptual placeholder -->
-        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqwb7BITCFsGvlMNCSpip0Fw7fafeApVF_p_JR-8bOHxSd1-AtFmYY8Z_f2Bfo7w7FVucOU2B91kYaKw5F8T4YArMm2q1xzt7XML1d2jfNX66bCALJWpOBEnkSqP9cPAnkOGpMm=s680-w680-h510"
-            alt="Royale Döner Zubereitung" class="about-img">
-        <div class="about-content">
-            <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Die Royale Qualität</h2>
-            <p>Willkommen bei Royale Döner! Wir stehen für echten Geschmack und höchste Qualität in Klagenfurt. Unser
-                Fleisch wird täglich frisch vorbereitet, und wir verwenden nur die besten, regionalen Zutaten für unsere
-                Salate und Saucen.</p>
-            <p>Egal ob du den schnellen Hunger in der Mittagspause stillen willst, oder abends gemütlich ein Essen holst
-                – wir bieten exzellenten Service für alle.</p>
-            <div class="about-features">
-                <div class="feature">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                    Zum Mitnehmen
+    <section id="about" class="section">
+        <div class="container fade-in-section">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Gemütliche Café Atmosphäre" loading="lazy">
                 </div>
-                <div class="feature">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                    Schnelle Lieferung
+                <div class="about-text">
+                    <h2>Ihr Ort zum Entspannen</h2>
+                    <p>Willkommen im Stadtcafe Am Altenplatz. Wir bieten Ihnen eine Oase der Ruhe und Gemütlichkeit
+                        inmitten der Altstadt von Klagenfurt. Unser charmantes Café ist der perfekte Ort, um dem
+                        stressigen Alltag für einen Moment zu entfliehen.</p>
+                    <p>Genießen Sie die einzigartige Atmosphäre direkt am Alten Platz, sei es bei einer Tasse
+                        exzellentem Kaffee, einem feinen Stück Kuchen oder einem erfrischenden Getränk auf unserer
+                        schönen Terrasse.</p>
+
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                                    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                                </svg>
+                            </div>
+                            <span>Premium Kaffee</span>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                </svg>
+                            </div>
+                            <span>Tolles Ambiente</span>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z">
+                                    </path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <span>Top Lage</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Speisekarte Section -->
-    <section id="menu" class="fade-in-section">
-        <h2 class="section-title">Unsere Speisekarte</h2>
+    <!-- Menu Modal Popup -->
+    <div class="modal-overlay" id="menu-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-menu-modal">X</button>
+            <div class="text-center" style="margin-top: 20px;">
+                <h2 class="section-title">Menükarte</h2>
+                <p class="section-subtitle">Ausgewählte Getränke und feine Speisen für Ihren Genuss.</p>
+            </div>
 
-        <div class="menu-category">
-            <h3 class="category-title">Döner & Dürüm</h3>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Royale Döner (Kalb)</span>
-                        <span class="item-price">6,50 €</span>
+            <div class="menu-category">
+                <h3 class="category-title">Kaffee</h3>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Espresso</span><span class="menu-price">€
+                                2.80</span></div>
+                        <p class="menu-desc">Kräftiger, italienischer Röstkaffee mit feiner Crema.</p>
                     </div>
-                    <p class="item-desc">Im knusprigen Fladenbrot mit frischem Salat, Tomate, Zwiebeln und Haussauce.
-                    </p>
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Cappuccino</span><span
+                                class="menu-price">€ 3.90</span></div>
+                        <p class="menu-desc">Espresso mit cremiger Milch und feinem Milchschaum.</p>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Melange</span><span class="menu-price">€
+                                4.10</span></div>
+                        <p class="menu-desc">Österreichischer Klassiker: Verlängerter Espresso mit heißer Milch und
+                            Milchschaumkrone.</p>
+                    </div>
                 </div>
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Hänchen Döner</span>
-                        <span class="item-price">6,00 €</span>
+            </div>
+
+            <div class="menu-category" style="margin-top: 40px;">
+                <h3 class="category-title">Kaltgetränke & Tee</h3>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Hausgemachte Limonade</span><span
+                                class="menu-price">€ 4.50</span></div>
+                        <p class="menu-desc">Erfrischend, mit frischer Minze und Zitrone (0,5l).</p>
                     </div>
-                    <p class="item-desc">Zartes Hühnerfleisch im Fladenbrot mit Salat, Gurke und Knoblauchsauce.</p>
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Bio-Tee Sortiment</span><span
+                                class="menu-price">€ 3.50</span></div>
+                        <p class="menu-desc">Verschiedene Sorten: Kamille, Pfefferminz, Grüner Tee, Früchte (Kännchen).
+                        </p>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Eiskaffee</span><span class="menu-price">€
+                                5.50</span></div>
+                        <p class="menu-desc">Gekühlter Kaffee mit Vanilleeis und Schlagobers.</p>
+                    </div>
                 </div>
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Royale Dürüm</span>
-                        <span class="item-price">7,50 €</span>
+            </div>
+
+            <div class="menu-category" style="margin-top: 40px;">
+                <h3 class="category-title">Mehlspeisen & Desserts</h3>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Hausgemachte Sachertorte</span><span
+                                class="menu-price">€ 4.80</span></div>
+                        <p class="menu-desc">Nach traditionellem Rezept mit Schlagobers serviert.</p>
                     </div>
-                    <p class="item-desc">Gerolltes Yufka-Brot, Kalbfleisch, Eisbergsalat, Tomaten, Zwiebeln,
-                        Joghurtsauce.</p>
-                </div>
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Veggie Döner (Falafel)</span>
-                        <span class="item-price">5,50 €</span>
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Apfelstrudel</span><span
+                                class="menu-price">€ 4.50</span></div>
+                        <p class="menu-desc">Warm serviert, wahlweise mit Vanillesauce (+€1.50).</p>
                     </div>
-                    <p class="item-desc">Hausgemachte Falafel im Fladenbrot mit Hummus, Salat und Granatapfelsauce.</p>
+                    <div class="menu-card">
+                        <div class="menu-card-header"><span class="menu-name">Kinder Eisbecher</span><span
+                                class="menu-price">€ 4.90</span></div>
+                        <p class="menu-desc">Bunter Mix aus leckeren Eissorten mit Überraschung.</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="menu-category">
-            <h3 class="category-title">Beilagen</h3>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Pommes Frites</span>
-                        <span class="item-price">3,50 €</span>
-                    </div>
-                    <p class="item-desc">Goldgelb und knusprig, inkl. Ketchup oder Mayo.</p>
-                </div>
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Chicken Nuggets (6 Stk)</span>
-                        <span class="item-price">4,50 €</span>
-                    </div>
-                    <p class="item-desc">Mit Sweet-Chili-Sauce.</p>
-                </div>
+    <!-- Fotos Section -->
+    <section id="photos" class="section menu-section">
+        <div class="container">
+            <div class="text-center fade-in-section">
+                <h2 class="section-title">Fotos</h2>
+                <p class="section-subtitle">Einblicke in unser Café</p>
             </div>
-        </div>
-
-        <div class="menu-category">
-            <h3 class="category-title">Getränke</h3>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Ayran</span>
-                        <span class="item-price">1,50 €</span>
-                    </div>
-                    <p class="item-desc">Der klassische Joghurt-Drink.</p>
-                </div>
-                <div class="menu-item">
-                    <div class="item-header">
-                        <span class="item-title">Coca Cola / Fanta / Sprite (0,33l)</span>
-                        <span class="item-price">2,50 €</span>
-                    </div>
-                    <p class="item-desc">Gekühlte Softdrinks in der Dose.</p>
-                </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;"
+                class="fade-in-section">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerSY74mwI9aI6_tCTc9irjg-xuhvZHNhUxM28ygTmxRza3xflVnpnUyRWESlFM9sURP3D7BXuwgxPgdN0eaxvWkxYbpC7x2sHYpojt7AICOODjWs9Z-_V4LUWfqLQU2QetaPJs=s680-w680-h510"
+                    alt="Foto 1"
+                    style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepH8cY9bWQ42xT1siUY1oMIc0Yj3_K6ck5CZbmiR3f54GtVNqsRC2ZQKEFukSZ3OVcsIWuei-KW-lPOXTim8dADVPc_5eHiDw0fPEb2kkTIWLkro1d1UsDTENXZQvsfSV48DEZsJg=s680-w680-h510"
+                    alt="Foto 2"
+                    style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepeu2IAh95LItoutgYJOo_d42DPbHj58w0g_jibO0jyPzJMSqi33iVjMeusCYpCEXZ5PVqkcAirlN6TOQM_dVVl42Kw30tJxsYilEVGZXfOKUji5f9YHGYWbh0EU04Ov1ioKgdc=s680-w680-h510"
+                    alt="Foto 3"
+                    style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             </div>
         </div>
     </section>
 
     <!-- Bewertungen Section -->
-    <section id="reviews" class="fade-in-section">
-        <h2 class="section-title">Was unsere Kunden sagen</h2>
-        <div class="overall-rating">
-            <span class="stars">★★★★★</span>
-            <p style="margin-top: 10px; color: #555; font-weight: 600;">4.3 von 5 Sternen auf Google</p>
-        </div>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="reviewer">
-                    <div class="avatar">M</div>
-                    <div>
-                        <strong>Mario Sherif el Shamy</strong>
-                        <div class="stars" style="font-size: 1rem;">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">"Bester Döner Klagenfurts! Endlich gibts Kalbsdöner in Klagenfurt🤩 Nettes
-                    Personal, leckerer Döner und sauber! Wer nicht war, muss hin!"</p>
+    <section id="reviews" class="section">
+        <div class="container">
+            <div class="reviews-summary fade-in-section">
+                <h2 class="section-title">Was unsere Gäste sagen</h2>
+                <div class="stars">★★★★☆</div>
+                <div class="rating-number">4,1 / 5</div>
+                <p class="section-subtitle">Basierend auf zahlreichen Google-Bewertungen</p>
             </div>
-            <div class="review-card">
-                <div class="reviewer">
-                    <div class="avatar">N</div>
-                    <div>
-                        <strong>Nino Ackerer</strong>
-                        <div class="stars" style="font-size: 1rem;">★★★★★</div>
+
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card fade-in-section">
+                    <div class="review-author" style="margin-bottom: 20px;">
+                        <div class="author-avatar">KW</div>
+                        <div class="author-info">
+                            <h4>Klaus Wallner</h4>
+                            <div class="author-stars">★★★★★</div>
+                        </div>
                     </div>
+                    <p class="review-text">„Sehr nettes Personal und der Chef spricht fünf Sprachen und ist ein vorzeige
+                        Beispiel für Integration. Mann kann draußen sitzen und den Alten Platz genießen oder im
+                        Chafehaus bei einen schönen Ambiente sein Getränk trinken...“</p>
                 </div>
-                <p class="review-text">"Sehr leckerer Döner Kalbfleisch sehr zu empfehlen Mitarbeiter sehr freundlich
-                    und ambitioniert,alles in allem ,sehr empfehlenswert"</p>
-            </div>
-            <div class="review-card">
-                <div class="reviewer">
-                    <div class="avatar">S</div>
-                    <div>
-                        <strong>Simon Mikula</strong>
-                        <div class="stars" style="font-size: 1rem;">★★★★★</div>
+
+                <!-- Review 2 -->
+                <div class="review-card fade-in-section">
+                    <div class="review-author" style="margin-bottom: 20px;">
+                        <div class="author-avatar">ME</div>
+                        <div class="author-info">
+                            <h4>Marco Eisner</h4>
+                            <div class="author-stars">★★★★★</div>
+                        </div>
                     </div>
+                    <p class="review-text">„Die beiden Kellerinnen waren sehr nett, witzig und zuvorkommend ... man
+                        fühlte sich einfach wohl 😊 Danke!“</p>
                 </div>
-                <p class="review-text">"absolute 5/5! Döner super gefüllt und nicht zu fettig da viel verschiedene
-                    Gemüsesorte. Personal sehr nett! :)"</p>
+
+                <!-- Review 3 -->
+                <div class="review-card fade-in-section">
+                    <div class="review-author" style="margin-bottom: 20px;">
+                        <div class="author-avatar">TS</div>
+                        <div class="author-info">
+                            <h4>Thomas Schager</h4>
+                            <div class="author-stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <p class="review-text">„Tolles Café: gemütlich am Alten Platz draußen sitzen, freundliche Bedienung,
+                        guter Kaffee, gute Mehlspeisen. Toller Eisbecher für Kinder und eine freundliche Atmosphäre an
+                        einem sehr schönen Ort in Klagenfurt. Wir haben uns sehr wohl gefühlt.“</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Kontakt Section -->
-    <section id="contact" class="fade-in-section">
-        <div class="map-container"
-            style="height: 100%; margin-top: 0; min-height: 400px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <!-- Embedded Google Map targeting Bahnhofstraße 20/3, Klagenfurt -->
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.1751332463435!2d14.306915176840706!3d46.62315487111818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4770734268e0d5db%3A0xc3cf905bcaa582d9!2sBahnhofstra%C3%9Fe%2020%2C%209020%20Klagenfurt%20am%20W%C3%B6rthersee%2C%20Austria!5e0!3m2!1sen!2sde!4v1700000000000!5m2!1sen!2sde"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-
-        <div class="contact-info-wrap"
-            style="background: white; padding: 3rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); justify-content: center;">
-            <h2 class="section-title" style="text-align: left; margin-bottom: 2rem; font-size: 2rem;">Besuche uns</h2>
-
-            <div class="info-block" style="margin-bottom: 2rem;">
-                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem;">Standort</h3>
-                <p style="color: #444; line-height: 1.6;">Bahnhofstraße 20/3<br>9020 Klagenfurt am Wörthersee</p>
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="text-center fade-in-section">
+                <h2 class="section-title">Besuchen Sie uns</h2>
+                <p class="section-subtitle">Wir freuen uns darauf, Sie bald im Stadtcafe begrüßen zu dürfen.</p>
             </div>
 
-            <div class="info-block" style="margin-bottom: 2rem;">
-                <h3 style="color: var(--primary); margin-bottom: 0.8rem; font-size: 1.1rem;">Kontakt</h3>
-                <p><a href="tel:06766951382" class="phone-link">0676 695 1382</a></p>
-            </div>
+            <div class="contact-grid">
+                <!-- Kontakt Info -->
+                <div class="contact-info fade-in-section">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z">
+                                </path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Adresse</h4>
+                            <p>Am, Alter Pl. 26<br>9020 Klagenfurt am Wörthersee</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Telefon</h4>
+                            <p><a href="tel:+4369918109532">0699 18109532</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Öffnungszeiten</h4>
+                            <p>Montag bis Sonntag<br>08:30 – 23:00 Uhr</p>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="info-block">
-                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">Öffnungszeiten</h3>
-                <table style="width: 100%; max-width: 300px; color: #444; border-collapse: collapse;">
-                    <tr>
-                        <td style="padding: 6px 0;">Mo - Do:</td>
-                        <td style="text-align: right; font-weight: 500;">09:00 – 21:00</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 6px 0;">Fr - Sa:</td>
-                        <td style="text-align: right; font-weight: 500;">09:00 – 02:00</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 6px 0;">Sonntag:</td>
-                        <td style="text-align: right; font-weight: 500;">12:00 – 21:00</td>
-                    </tr>
-                </table>
+                <!-- Google Maps Embed -->
+                <div class="map-container fade-in-section" style="margin-top: 0; height: 100%;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2729.8378875501194!2d14.30561571560376!3d46.62319247913076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4770734a70b0ea3b%3A0xe54c1bebc0b284db!2sAlter%20Pl.%2026%2C%209020%20Klagenfurt%20am%20W%C3%B6rthersee%2C%20Austria!5e0!3m2!1sen!2sde!4v1683100000000!5m2!1sen!2sde"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Ort des Stadtcafe"
+                        style="box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 8px;"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <a href="#" class="logo"
-                    style="color: white; font-size: 1.2rem; display: block; margin-bottom: 1rem;">Royale Döner</a>
-                <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">Der beste Döner in Klagenfurt. Frische
-                    Zutaten, echter Geschmack.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Stadtcafe Am Altenplatz</div>
+                    <p class="footer-tagline">Genuss mit Atmosphäre.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Impressum</a>
+                    <a href="#contact">Kontakt</a>
+                    <a href="#">Datenschutz</a>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Kontakt</h4>
-                <ul>
-                    <li><a href="tel:06766951382">Tel: 0676 695 1382</a></li>
-                    <li>Bahnhofstraße 20/3, 9020 Klagenfurt</li>
-                </ul>
+            <div class="footer-bottom">
+                &copy; 2026 Stadtcafe Am Altenplatz. Alle Rechte vorbehalten.
             </div>
-            <div class="footer-col">
-                <h4>Rechtliches</h4>
-                <ul>
-                    <li><a href="#">Impressum</a></li>
-                    <li><a href="#">Datenschutz</a></li>
-                    <li><a href="#">AGB</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Royale Döner. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
+    <!-- JavaScript for Interaktivität & Security Mock -->
     <script>
-        // --- NAVIGATION & UI LOGIC ---
-        const navbar = document.getElementById('navbar');
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        const links = document.querySelectorAll('.nav-links li a');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // Sticky Navbar Resize on Scroll
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+            // --- 1. Smooth Scrolling & Header Update ---
+            const header = document.getElementById('header');
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-link');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const closeBtn = document.getElementById('close-btn');
 
-        // Mobile Menu Toggle
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu on link click
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Close menu on click outside
-        document.addEventListener('click', (e) => {
-            if (!navbar.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
-
-        // Fade In on Scroll Intersection Observer
-        const fadeElements = document.querySelectorAll('.fade-in-section');
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    fadeObserver.unobserve(entry.target);
+            // Scroll Event for Header Shadow
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+                    header.style.padding = '5px 0';
+                } else {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                    header.style.padding = '0';
                 }
             });
-        }, { threshold: 0.1 });
 
-        fadeElements.forEach(el => fadeObserver.observe(el));
+            // Mobile Menu Toggle
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
 
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
 
+            closeBtn.addEventListener('click', closeMenu);
+            mobileOverlay.addEventListener('click', closeMenu);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href').substring(1);
+
+                    if (targetId === 'menu') {
+                        e.preventDefault();
+                        closeMenu();
+                        document.getElementById('menu-modal').classList.add('active');
+                        return;
+                    }
+
+                    e.preventDefault();
+                    closeMenu();
+
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Update Active State
+                        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                        if (this.classList.contains('mobile-link')) {
+                            // find equivalent desktop link
+                            const desktopLink = document.querySelector(`.nav-links a[href="#${targetId}"]`);
+                            if (desktopLink) desktopLink.classList.add('active');
+                        } else {
+                            this.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // Menu Details Modal Handlers
+            document.getElementById('menu-btn-hero').addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('menu-modal').classList.add('active');
+            });
+
+            document.getElementById('close-menu-modal').addEventListener('click', function () {
+                document.getElementById('menu-modal').classList.remove('active');
+            });
+
+            document.getElementById('menu-modal').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+
+            // --- 2. Animations (Intersection Observer) ---
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // ==========================================
+            // SECURITY MEASUREMENTS (OWASP Best Practices)
+            // ==========================================
+            /*
+             * 3. SECURE API KEY HANDLING:
+             * IMPORTANT OWASP RULE: Never store API keys, secrets, or credentials
+             * in client-side HTML/JS code. 
+             * - Do NOT hardcode keys here.
+             * - Move keys to backend environment variables (e.g., process.env.API_KEY).
+             * - Implement Key Rotation on the server side.
+             * - API calls should be proxied through your backend so keys are not exposed to the browser.
+             */
+
+            const SecurityUtils = {
+                // 1. RATE LIMITING (Client-side Mock Layer - Real implementation must be on the server)
+                // Ensures graceful 429 responses if the user hits endpoints too fast.
+                requestLog: [],
+                RATE_LIMIT_MS: 60000, // 1 minute window
+                MAX_REQUESTS: 5,      // max 5 requests per minute
+
+                checkRateLimit() {
+                    const now = Date.now();
+                    this.requestLog = this.requestLog.filter(time => now - time < this.RATE_LIMIT_MS);
+                    if (this.requestLog.length >= this.MAX_REQUESTS) {
+                        return { allowed: false, error: "Rate limit exceeded. Please wait before trying again (HTTP 429)." };
+                    }
+                    this.requestLog.push(now);
+                    return { allowed: true };
+                },
+
+                // 2. STRICT INPUT VALIDATION & SANITIZATION
+                // Schema-based, type checks, length limits, rejects unexpected fields
+                sanitizeString(str) {
+                    if (typeof str !== 'string') return '';
+                    // Prevent XSS
+                    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;', "/": '&#x2F;' };
+                    return str.replace(/[&<>"'/]/ig, match => map[match]);
+                },
+
+                validateInput(inputData, schema) {
+                    const sanitizedData = {};
+                    const errors = [];
+
+                    // Reject unexpected fields (OWASP Mass Assignment Prevention)
+                    for (const key in inputData) {
+                        if (!schema[key]) {
+                            errors.push(`Unexpected field: ${key}`);
+                        }
+                    }
+
+                    // Schema validation
+                    for (const [key, rules] of Object.entries(schema)) {
+                        const value = inputData[key];
+
+                        if (rules.required && (value === undefined || value === null || value === '')) {
+                            errors.push(`${key} is required.`);
+                            continue;
+                        }
+
+                        if (value !== undefined) {
+                            if (typeof value !== rules.type) {
+                                errors.push(`${key} must be of type ${rules.type}.`);
+                                continue;
+                            }
+
+                            if (rules.type === 'string') {
+                                if (value.length < (rules.minLength || 0)) errors.push(`${key} is too short.`);
+                                if (value.length > (rules.maxLength || Infinity)) errors.push(`${key} exceeds maximum length.`);
+                                if (rules.pattern && !rules.pattern.test(value)) errors.push(`${key} has invalid format.`);
+
+                                // Always sanitize expected string fields
+                                sanitizedData[key] = this.sanitizeString(value);
+                            } else {
+                                sanitizedData[key] = value;
+                            }
+                        }
+                    }
+
+                    return {
+                        isValid: errors.length === 0,
+                        errors,
+                        data: sanitizedData
+                    };
+                },
+
+                // Example Safe Endpoint Wrapper
+                async safeApiCall(endpoint, data, schema) {
+                    // Check Rate Limit First
+                    const rateCheck = this.checkRateLimit();
+                    if (!rateCheck.allowed) {
+                        console.warn(rateCheck.error); // Graceful 429
+                        return { status: 429, message: rateCheck.error };
+                    }
+
+                    // Validate & Sanitize Input
+                    const validation = this.validateInput(data, schema);
+                    if (!validation.isValid) {
+                        console.warn("Validation failed:", validation.errors);
+                        return { status: 400, message: "Invalid input data", errors: validation.errors };
+                    }
+
+                    // Simulated Backend Proxy Call (No API Key exposure here)
+                    return { status: 200, message: "Success", data: validation.data };
+                }
+            };
+        });
     </script>
 </body>
 
